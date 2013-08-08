@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Mensagem"
+            android:id="@+id/textView"
+            android:layout_alignRight="@+id/cmdAbs"
+            android:layout_below="@+id/btnAlerta"
+            android:layout_alignLeft="@+id/cmdAbs"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ipServer"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/cmdAbs"
+            android:layout_marginTop="32dp"
+            android:layout_alignParentRight="true"
+            android:focusableInTouchMode="true"
+            android:editable="false"
+            android:inputType="text"/>
+
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alerta OK"
+            android:id="@+id/btnAlerta"
+            android:onClick="sendAlertaOk"
+            android:layout_below="@+id/ipServer"
+            android:layout_centerHorizontal="true"/>
+
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="IP Servidor"
+            android:id="@+id/txtIpServe"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/ipServer"
+            android:layout_alignRight="@+id/ipServer"/>
+
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cmdAbs"
+            android:layout_below="@+id/btnAlerta"
+            android:layout_marginTop="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:inputType="text"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:id="@+id/button"
+            android:onClick="sendAbsCmd"
+            android:layout_below="@+id/cmdAbs"
+            android:layout_centerHorizontal="true"/>
+</RelativeLayout>
