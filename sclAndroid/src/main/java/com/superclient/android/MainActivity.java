@@ -1,7 +1,10 @@
 package com.superclient.android;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -42,30 +45,39 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void sendMsg(String str){
-        if (!getIpServer()){
-            System.err.println("Não encontrei o servidor!");
-        }else{
 
-            Socket socket = null;
-            DataOutputStream strOut = null;
+    public void sendMsg(final String str){
 
-            try{
-                socket = new Socket(ipServer.getText().toString(),4602);
-                strOut = new DataOutputStream(socket.getOutputStream());
-                strOut.writeUTF(str);
-                socket.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }finally {
-                try {
-                    socket.close();
-                    strOut.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        Thread thSendMsg = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (!getIpServer()){
+                    System.err.println("Não encontrei o servidor!");
+                }else{
+
+                    Socket socket = null;
+                    DataOutputStream strOut = null;
+
+                    try{
+                        socket = new Socket(ipServer.getText().toString(),4602);
+                        strOut = new DataOutputStream(socket.getOutputStream());
+                        strOut.writeUTF(str);
+                        socket.close();
+                    }catch (Exception e){
+                        System.err.println("DEU MERDA!");
+                        e.printStackTrace();
+                    }finally {
+                        try {
+                            socket.close();
+                            strOut.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
-        }
+        });
+        thSendMsg.start();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

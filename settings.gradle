@@ -1,1 +1,1 @@
-include ':sclAndroid'
+include ':sclAndroid', ':'

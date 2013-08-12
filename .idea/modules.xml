@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SclAndroid.iml" filepath="$PROJECT_DIR$/SclAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/sclAndroid/sclAndroid.iml" filepath="$PROJECT_DIR$/sclAndroid/sclAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/sclAndroid/sclAndroid-sclAndroid.iml" filepath="$PROJECT_DIR$/sclAndroid/sclAndroid-sclAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/sclAndroidProject.iml" filepath="$PROJECT_DIR$/sclAndroidProject.iml" />

@@ -81,4 +81,4 @@
             android:layout_below="@+id/cmdAbs"
             android:layout_centerHorizontal="true"/>
 </RelativeLayout>
-<!-- From: file:/home/luan/AndroidStudioProjects/sclAndroid/sclAndroid/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/home/epsoft/AndroidStudioProjects/android-development/SclAndroid/sclAndroid/src/main/res/layout/activity_main.xml -->
