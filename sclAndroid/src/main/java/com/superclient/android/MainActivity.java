@@ -64,7 +64,6 @@ public class MainActivity extends Activity {
                         strOut.writeUTF(str);
                         socket.close();
                     }catch (Exception e){
-                        System.err.println("DEU MERDA!");
                         e.printStackTrace();
                     }finally {
                         try {
