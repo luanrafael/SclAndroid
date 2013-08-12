@@ -1,31 +1,32 @@
 package com.superclient.android;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
-import android.os.StrictMode;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.DataOutputStream;
 import java.net.Socket;
+import android.os.Handler;
 
 public class MainActivity extends Activity {
 
     EditText ipServer;
     EditText cmbBds;
-
+    Handler handler = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        handler = new Handler();
     }
 
     public boolean getIpServer(){
         ipServer = (EditText) findViewById(R.id.ipServer);
-        if (!ipServer.getText().toString().isEmpty()){
+        String strIpServer = ipServer.getText().toString();
+        if (!strIpServer.isEmpty()){
             return true;
         }
         return false;
@@ -42,6 +43,7 @@ public class MainActivity extends Activity {
             sendMsg(strMsg);
         }else{
             System.err.println("Sem Mensagem!");
+            showToast("Sem Mensagem!");
         }
     }
 
@@ -52,7 +54,7 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 if (!getIpServer()){
-                    System.err.println("Não encontrei o servidor!");
+                    showToast("Não encontrei o Servidor!");
                 }else{
 
                     Socket socket = null;
@@ -63,8 +65,10 @@ public class MainActivity extends Activity {
                         strOut = new DataOutputStream(socket.getOutputStream());
                         strOut.writeUTF(str);
                         socket.close();
+                        showToast("Comando Enviado com Sucesso! :) ");
                     }catch (Exception e){
                         e.printStackTrace();
+                        showToast("Falha ao enviar Comando! :( ");
                     }finally {
                         try {
                             socket.close();
@@ -78,6 +82,24 @@ public class MainActivity extends Activity {
         });
         thSendMsg.start();
     }
+
+
+    public void showToast(final String strMsg){
+        Thread thToast = new Thread( new Runnable() {
+            @Override
+            public void run() {
+                handler.post(
+                        new Runnable() {
+                            public void run() {
+                                Toast.makeText(MainActivity.this, strMsg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+        thToast.start();
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
